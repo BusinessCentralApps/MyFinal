@@ -206,7 +206,6 @@ jobs:
       actions: read
       pages: write
       id-token: write
-      issues: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -253,12 +252,6 @@ jobs:
     defaults:
       run:
         shell: ${{ matrix.shell }}
-    permissions:
-      contents: read
-      actions: read
-      pages: write
-      id-token: write
-      issues: write
     environment:
       name: ${{ matrix.environment }}
       url: ${{ steps.Deploy.outputs.environmentUrl }}
