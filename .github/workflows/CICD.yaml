@@ -246,6 +246,11 @@ jobs:
 
   Deploy:
     needs: [ Initialization, Build ]
+contents: read
+actions: read
+pages: write
+id-token: write
+issues: write
     if: (!cancelled()) && (needs.Build.result == 'success' || needs.Build.result == 'skipped') && needs.Initialization.outputs.environmentCount > 0
     strategy: ${{ fromJson(needs.Initialization.outputs.environmentsMatrixJson) }}
     runs-on: ${{ fromJson(matrix.os) }}
@@ -253,12 +258,6 @@ jobs:
     defaults:
       run:
         shell: ${{ matrix.shell }}
-    permissions:
-      contents: read
-      actions: read
-      pages: write
-      id-token: write
-      issues: write
     environment:
       name: ${{ matrix.environment }}
       url: ${{ steps.Deploy.outputs.environmentUrl }}
@@ -374,6 +373,13 @@ jobs:
           shell: powershell
           telemetryScopeJson: ${{ needs.Initialization.outputs.telemetryScopeJson }}
           currentJobContext: ${{ toJson(job) }}
+
+  CustomJob-Init:
+    runs-on: [ windows-latest ]
+    steps:
+      - name: Init
+        run: |
+          Write-Host 'CustomJob-Init was here'
 
   CustomJob-Init:
     runs-on: [ windows-latest ]
