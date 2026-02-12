@@ -1,5 +1,6 @@
 {
   "type": "PTE",
   "templateUrl": "https://github.com/freddydk/MyTemplate@main",
-  "templateSha": "f6189c5d9700bbe4c86fb35d0458d8987d868bb6"
+  "templateSha": "f6189c5d9700bbe4c86fb35d0458d8987d868bb6",
+  "PullRequestTrigger": "pull_request"
 }
